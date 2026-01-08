@@ -20,9 +20,11 @@ function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [orderConfirmation, setOrderConfirmation] = useState(null);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
   // Fetch products from backend
   useEffect(() => {
-    fetch('http://localhost:8000/api/products')
+    fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -157,7 +159,7 @@ function App() {
 
       console.log('📤 Sending checkout data:', checkoutData);
 
-      const response = await fetch('http://localhost:8000/api/checkout', {
+      const response = await fetch(`${API_URL}/api/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(checkoutData)
