@@ -6,9 +6,10 @@ from sqlalchemy.orm import sessionmaker, Session
 from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
+import os
 
 # ========== DATABASE SETUP ==========
-DATABASE_URL = "mysql+pymysql://root:root@localhost/amazon_clone"
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:root@localhost/amazon_clone")
 
 engine = create_engine(
     DATABASE_URL,
